@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% block title %}Car Registration{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+
+<div id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8 col-sm-12">
+				<h2>Get in touch</h2>
+			</div>
+			<div class="container">
+				{% if messages %}
+					{% for i in messages %}
+						<center><div class="alert alert-{{i.tags}}"><h6> {{i}} </h6></div></center>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-md-8 col-sm-8 mt30">
+				<form method="Post" enctype='multipart/form-data'>
+					{% csrf_token %}
+					<table>
+					<div class="col-md-6 col-sm-6">
+                        <td for="name">NAME</td>
+                        <td>{{fm.name}}</td>
+					</div>
+
+					<div class="col-md-6 col-sm-6">
+                      	<td for="email">EMAIL</td>
+                    	<td>{{fm.email}}
+					</div>
+					
+					<div class="col-md-6 col-sm-6">
+						<td for="message">MESSAGE</td>
+						<td>{{fm.msg}}</td>
+					</div>
+                    <div class="col-md-6 col-sm-6">
+                    	<td><button type="submit" name="submit" class="btn btn-primary">SEND</button></td>
+                    </div>
+				</table>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-4 address">
+			<div>
+				<h3>Email</h3>
+				<p>prashantghotkar03@gmail.com</p>
+			</div>
+			<div>
+				<h3>Phones</h3>
+				<p>+91 8975545817</p>
+			</div>
+		</div>
+		<div class="col-md-12 col-sm-12 mt20">
+			<h3>------------</h3>
+			<div class="google_map mt20">
+			<div id="map-canvas"></div>
+		</div>
+	</div>
+</div>		
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-sm-4">
+			<a class="navbar-brand">AS</a>
+				<p>Automobile Showroom </p>
+			</div>
+		</div>
+	</div>
+</footer>
+{% else %}
+    <center>
+      <h4> Login To Continue... </h4>
+      <a class='navbar-link' href='/login' title='Click to go Login page'>Login</a>
+    </center>
+    {% endif %}  
+</html>
+{% endblock body %}

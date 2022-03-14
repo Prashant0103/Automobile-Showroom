@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %}Search{% endblock title %} {% block body %}
+{% if user.is_authenticated %}
+   
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity=
+"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+ 
+      <center><h2>Automobile Showroom</h2> 
+      <p><b>Click on the image to view image</b></p></center>
+ 
+    {% for i in data %}
+    <center><button type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModal">
+        <img src="{{i.image.url}}"  height="400"class="d-block w-99" alt="...">
+    </button>
+    <h4>---------------------------------------------</h4>
+          <h4>Car Name : {{i.name.upper}}</h4>
+          <h4>Company : {{i.company.upper}}</h4>
+          <h4>Engine Power : {{i.engine}}</h4>
+          <h4>Type Of Vehicle : {{i.type.upper}}</h4>
+          <h4>Car Seat Capacity : {{i.seat_capacity}}</h4>
+          <h4>Car Price : {{i.price}}</h4>
+          <h4>---------------------------------------------</h4></center>
+    <!-- Modal -->
+    <div class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+         
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             
+                <!-- Add image inside the body of modal -->
+                <div class="modal-body">
+                    <img align='center' src="{{i.image.url}}" height='600' width='500' />
+                </div>
+ 
+                <div class="modal-footer">
+                    <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal">
+                        Close
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+   
+    <!-- Adding scripts to use bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity=
+"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity=
+"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity=
+"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous">
+    </script>  
+ 
+{% endif %}
+{% endblock body %}
